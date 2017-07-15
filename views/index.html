@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<div class="container-fluid">
+  <head>
+    <h1> Learn an Atom shortcut </h1>
+    <h3> Muscle memory is key! Press the keys indicated. </h3>
+  </head>
+  <body>
+    <script src='jquery.js'></script>
+    <section>
+      <p id="shortcut"></p>
+      <p id="description"></p>
+      <button id="new_shortcut" type ="button">New shortcut</button>
+    </section>
+    <script src="../src/shortkeys.js" type="text/javascript"></script>
+    <script>
+    $(document).ready(function(){
+      var shortkeys = new Shortkeys();
+      $('#shortcut').text(shortkeys.displayShortcut);
+      $('#description').text(shortkeys.displayDescription);
+      $('#new_shortcut').on('click', function() {
+        shortkeys.randomShortcut();
+        $('#shortcut').text(shortkeys.displayShortcut);
+        $('#description').text(shortkeys.displayDescription);
+      });
+    });
+  </script>
+</body>
+</div>
+</html>

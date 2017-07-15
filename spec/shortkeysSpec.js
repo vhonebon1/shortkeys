@@ -11,10 +11,20 @@ describe ("Shortkeys", function() {
     expect(shortkeys.atomShortcuts[1].description).toEqual("moves line up")
   });
 
+  it("has a default value for display shortcut", function() {
+    expect(shortkeys.displayShortcut).toEqual("Click the button below to generate shortcut")
+  });
+
+  it("has a default value for display shortcut", function() {
+    expect(shortkeys.displayDescription).toEqual(null)
+  });
+
   describe("randomShortcut", function() {
-    it("returns a random atom shortcut", function() {
+    it("returns a random atom shortcut and its description", function() {
       spyOn(Math, "random").and.returnValue(0.5)
-      expect(shortkeys.randomShortcut()).toEqual({shortcut: "Cmd + Ctrl + Up", description: "moves line up"})
+      shortkeys.randomShortcut();
+      expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
+      expect(shortkeys.displayDescription).toEqual("moves line up")
     });
   });
 });
