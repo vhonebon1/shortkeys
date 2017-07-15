@@ -12,7 +12,7 @@ describe ("Shortkeys", function() {
   });
 
   it("has a default value for display shortcut", function() {
-    expect(shortkeys.displayShortcut).toEqual("Click the button below to generate shortcut")
+    expect(shortkeys.displayShortcut).toEqual("Click the button below to generate a shortcut")
   });
 
   it("has a default value for display shortcut", function() {
