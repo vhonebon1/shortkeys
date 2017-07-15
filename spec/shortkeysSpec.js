@@ -8,7 +8,7 @@ describe ("Shortkeys", function() {
 
   it("has an array of atom shortcuts with descriptions", function() {
     expect(shortkeys.atomShortcuts[0].shortcut).toEqual("Cmd + Shift + D")
-    expect(shortkeys.atomShortcuts[1].description).toEqual("moves line up")
+    expect(shortkeys.atomShortcuts[1].description).toEqual("to move a line up")
   });
 
   it("has a default value for display shortcut", function() {
@@ -24,7 +24,7 @@ describe ("Shortkeys", function() {
       spyOn(Math, "random").and.returnValue(0.5)
       shortkeys.randomShortcut();
       expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
-      expect(shortkeys.displayDescription).toEqual("moves line up")
+      expect(shortkeys.displayDescription).toEqual("to move a line up")
     });
   });
 
@@ -41,7 +41,17 @@ describe ("Shortkeys", function() {
       spyOn(Math, "random").and.returnValue(0.5)
       shortkeys.randomShortcut();
       expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
-      expect(shortkeys.displayDescription).toEqual("moves line up")
+      expect(shortkeys.displayDescription).toEqual("to move a line up")
+    });
+  });
+
+  describe("congratsMessage", function() {
+    it("should show message when correct keys are pressed", function() {
+      spyOn(Math, "random").and.returnValue(0.5)
+      shortkeys.randomShortcut();
+      spyOn(window, 'alert');
+      shortkeys.congratsMessage();
+      expect(window.alert).toHaveBeenCalledWith('Well done, you learned how to move a line up');
     });
   });
 });

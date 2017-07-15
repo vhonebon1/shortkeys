@@ -1,5 +1,5 @@
 function Shortkeys() {
-  this.atomShortcuts = [{shortcut: "Cmd + Shift + D", description: "duplicates line"}, {shortcut: "Cmd + Ctrl + Up", description: "moves line up"}, {shortcut: "Ctrl + Shift + K", description: "deletes line"}];
+  this.atomShortcuts = [{shortcut: "Cmd + Shift + D", description: "to duplicate a line"}, {shortcut: "Cmd + Ctrl + Up", description: "to move a line up"}, {shortcut: "Ctrl + Shift + K", description: "to delete a line"}];
   this.displayShortcut = "Click the button below to generate a shortcut"
   this.displayDescription = null
 }
@@ -18,4 +18,8 @@ Shortkeys.prototype._deleteShortcut = function(shortcut) {
 Shortkeys.prototype._updateAttributes = function(shortcut, description) {
   this.displayShortcut = shortcut;
   this.displayDescription = description;
+}
+
+Shortkeys.prototype.congratsMessage = function() {
+  alert("Well done, you learned how " + this.displayDescription)
 }
