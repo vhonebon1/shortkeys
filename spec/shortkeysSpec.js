@@ -32,14 +32,14 @@ describe ("Shortkeys", function() {
   });
 
   describe("_deleteShortcut", function() {
-    it("should delete a shortcut that has been taught", function() {
+    it("deletes a shortcut that has been taught", function() {
       helper.stubbedRandomGenerator();
       expect(shortkeys.atomShortcuts.length).toEqual(2);
     });
   });
 
   describe("_updateAttributes", function() {
-    it("should update the display fields", function() {
+    it("updates the display fields", function() {
       helper.stubbedRandomGenerator();
       expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
       expect(shortkeys.displayDescription).toEqual("to move a line up")
@@ -47,11 +47,20 @@ describe ("Shortkeys", function() {
   });
 
   describe("congratsMessage", function() {
-    it("should show message specific to test", function() {
+    it("shows a message specific to test", function() {
       helper.stubbedRandomGenerator();
       spyOn(window, 'alert');
       shortkeys.congratsMessage();
       expect(window.alert).toHaveBeenCalledWith('Well done! You learned how to move a line up!');
+    });
+
+    // need test for when keys are all pressed
+    // need test for when wrong keys are pressed
+
+    it("does not show a message when no keys pressed", function() {
+      helper.stubbedRandomGenerator();
+      spyOn(window, 'alert');
+      expect(window.alert).not.toHaveBeenCalledWith('Well done! You learned how to move a line up!');
     });
   });
 
