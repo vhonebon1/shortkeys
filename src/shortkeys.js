@@ -21,5 +21,5 @@ Shortkeys.prototype._updateAttributes = function(shortcut, description) {
 }
 
 Shortkeys.prototype.congratsMessage = function() {
-  alert("Well done, you learned how " + this.displayDescription)
+  alert("Well done! You learned how " + this.displayDescription + "!")
 }

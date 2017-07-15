@@ -6,7 +6,7 @@
 <div class="container-fluid">
   <head>
     <h1> Learn an Atom shortcut </h1>
-    <h3> Muscle memory is key! Press the keys indicated. </h3>
+    <h3> Muscle memory is key. Press the keys indicated. </h3>
   </head>
   <body>
     <script src='jquery.js'></script>
@@ -26,8 +26,20 @@
         $('#shortcut').text(shortkeys.displayShortcut);
         $('#description').text(shortkeys.displayDescription);
       });
+
+      $(window).keydown(function (e) {
+        if ((this.displayShortcut == "Cmd + Shift + D") && (e.ctrlKey && e.shiftKey && e.keyCode == 75)) {
+          shortkeys.congratsMessage();
+        }
+        if ((this.displayShortcut == "Cmd + Ctrl + Up") && (e.ctrlKey && e.metaKey && e.keyCode == 38)) {
+          shortkeys.congratsMessage();
+        }
+        if (e.metaKey && e.shiftKey && e.keyCode == 68) {
+          shortkeys.congratsMessage();
+        }
+      });
     });
-  </script>
-</body>
+    </script>
+  </body>
 </div>
 </html>

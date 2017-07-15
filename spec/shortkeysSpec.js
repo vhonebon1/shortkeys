@@ -6,6 +6,10 @@ describe ("Shortkeys", function() {
     shortkeys = new Shortkeys();
   });
 
+  beforeEach(function() {
+    helper = new Helper();
+  });
+
   it("has an array of atom shortcuts with descriptions", function() {
     expect(shortkeys.atomShortcuts[0].shortcut).toEqual("Cmd + Shift + D")
     expect(shortkeys.atomShortcuts[1].description).toEqual("to move a line up")
@@ -21,8 +25,7 @@ describe ("Shortkeys", function() {
 
   describe("randomShortcut", function() {
     it("returns a random atom shortcut and its description", function() {
-      spyOn(Math, "random").and.returnValue(0.5)
-      shortkeys.randomShortcut();
+      helper.stubbedRandomGenerator();
       expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
       expect(shortkeys.displayDescription).toEqual("to move a line up")
     });
@@ -30,28 +33,33 @@ describe ("Shortkeys", function() {
 
   describe("_deleteShortcut", function() {
     it("should delete a shortcut that has been taught", function() {
-      spyOn(Math, "random").and.returnValue(0.5)
-      shortkeys.randomShortcut();
+      helper.stubbedRandomGenerator();
       expect(shortkeys.atomShortcuts.length).toEqual(2);
     });
   });
 
   describe("_updateAttributes", function() {
     it("should update the display fields", function() {
-      spyOn(Math, "random").and.returnValue(0.5)
-      shortkeys.randomShortcut();
+      helper.stubbedRandomGenerator();
       expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
       expect(shortkeys.displayDescription).toEqual("to move a line up")
     });
   });
 
   describe("congratsMessage", function() {
-    it("should show message when correct keys are pressed", function() {
-      spyOn(Math, "random").and.returnValue(0.5)
-      shortkeys.randomShortcut();
+    it("should show message specific to test", function() {
+      helper.stubbedRandomGenerator();
       spyOn(window, 'alert');
       shortkeys.congratsMessage();
-      expect(window.alert).toHaveBeenCalledWith('Well done, you learned how to move a line up');
+      expect(window.alert).toHaveBeenCalledWith('Well done! You learned how to move a line up!');
     });
   });
+
+  function Helper() {
+
+    Helper.prototype.stubbedRandomGenerator = function() {
+      spyOn(Math, "random").and.returnValue(0.5)
+      shortkeys.randomShortcut();
+    }
+  }
 });
