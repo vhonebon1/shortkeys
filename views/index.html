@@ -28,12 +28,15 @@
       });
 
       $(window).keydown(function (e) {
-        if ((this.displayShortcut == "Cmd + Shift + D") && (e.ctrlKey && e.shiftKey && e.keyCode == 75)) {
+        // Ctrl + Shift + K
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 75) {
           shortkeys.congratsMessage();
         }
-        if ((this.displayShortcut == "Cmd + Ctrl + Up") && (e.ctrlKey && e.metaKey && e.keyCode == 38)) {
+        // Cmd + Ctrl + Up
+        if (e.metaKey && e.ctrlKey && e.keyCode == 38) {
           shortkeys.congratsMessage();
         }
+        // Cmd + Shift + D
         if (e.metaKey && e.shiftKey && e.keyCode == 68) {
           shortkeys.congratsMessage();
         }
