@@ -27,4 +27,21 @@ describe ("Shortkeys", function() {
       expect(shortkeys.displayDescription).toEqual("moves line up")
     });
   });
+
+  describe("_deleteShortcut", function() {
+    it("should delete a shortcut that has been taught", function() {
+      spyOn(Math, "random").and.returnValue(0.5)
+      shortkeys.randomShortcut();
+      expect(shortkeys.atomShortcuts.length).toEqual(2);
+    });
+  });
+
+  describe("_updateAttributes", function() {
+    it("should update the display fields", function() {
+      spyOn(Math, "random").and.returnValue(0.5)
+      shortkeys.randomShortcut();
+      expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
+      expect(shortkeys.displayDescription).toEqual("moves line up")
+    });
+  });
 });
