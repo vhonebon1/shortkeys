@@ -1,5 +1,9 @@
 function Shortkeys() {
-  this.atomShortcuts = [{shortcut: "Cmd + Shift + D", description: "to duplicate a line"}, {shortcut: "Cmd + Ctrl + Up", description: "to move a line up"}, {shortcut: "Ctrl + Shift + K", description: "to delete a line"}];
+  this.atomShortcuts = [{shortcut: "Cmd + Shift + D", description: "to duplicate a line"},
+                        {shortcut: "Cmd + Ctrl + Up", description: "to move a line up"},
+                        {shortcut: "Ctrl + Shift + K", description: "to delete a line"},
+                        {shortcut: "Cmd + D", description: "to select the next matching characters"},
+                        {shortcut: "Cmd + L", description: "to select the entire current line"}];
   this.displayShortcut = "Click the button below to generate a shortcut"
   this.displayDescription = null
 }

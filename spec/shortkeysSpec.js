@@ -6,10 +6,6 @@ describe ("Shortkeys", function() {
     shortkeys = new Shortkeys();
   });
 
-  beforeEach(function() {
-    helper = new Helper();
-  });
-
   it("has an array of atom shortcuts with descriptions", function() {
     expect(shortkeys.atomShortcuts[0].shortcut).toEqual("Cmd + Shift + D")
     expect(shortkeys.atomShortcuts[1].description).toEqual("to move a line up")
@@ -25,50 +21,63 @@ describe ("Shortkeys", function() {
 
   describe("randomShortcut", function() {
     it("returns a random atom shortcut and its description", function() {
-      helper.stubbedRandomGenerator();
-      expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
-      expect(shortkeys.displayDescription).toEqual("to move a line up")
+      stubbedRandomGenerator();
+      expect(shortkeys.displayShortcut).toEqual("Ctrl + Shift + K")
+      expect(shortkeys.displayDescription).toEqual("to delete a line")
     });
   });
 
   describe("_deleteShortcut", function() {
     it("deletes a shortcut that has been taught", function() {
-      helper.stubbedRandomGenerator();
-      expect(shortkeys.atomShortcuts.length).toEqual(2);
+      stubbedRandomGenerator();
+      expect(shortkeys.atomShortcuts.length).toEqual(4);
     });
   });
 
   describe("_updateAttributes", function() {
     it("updates the display fields", function() {
-      helper.stubbedRandomGenerator();
-      expect(shortkeys.displayShortcut).toEqual("Cmd + Ctrl + Up")
-      expect(shortkeys.displayDescription).toEqual("to move a line up")
+      stubbedRandomGenerator();
+      expect(shortkeys.displayShortcut).toEqual("Ctrl + Shift + K")
+      expect(shortkeys.displayDescription).toEqual("to delete a line")
     });
   });
 
   describe("congratsMessage", function() {
     it("shows a message specific to test", function() {
-      helper.stubbedRandomGenerator();
+      stubbedRandomGenerator();
       spyOn(window, 'alert');
       shortkeys.congratsMessage();
-      expect(window.alert).toHaveBeenCalledWith('Well done! You learned how to move a line up!');
+      expect(window.alert).toHaveBeenCalledWith('Well done! You learned how to delete a line!');
     });
 
-    // need test for when keys are all pressed
-    // need test for when wrong keys are pressed
+// these two tests are not working
+    it("shows a message when correct keys are pressed", function() {
+      stubbedRandomGenerator();
+      var e1 = jQuery.Event("keydown", {keyCode: 17});
+      var e2 = jQuery.Event("keydown", {keyCode: 91});
+      var e3 = jQuery.Event("keydown", {keyCode: 38});
+      jQuery("body").trigger(e1).trigger(e2).trigger(e3)
+      spyOn(window, 'alert');
+      expect(window.alert).toHaveBeenCalledWith('Well done! You learned how to delete a line!');
+    });
+
+    it("does not show a message when wrong keys are pressed", function() {
+      stubbedRandomGenerator();
+      var e = jQuery.Event("keydown", {keyCode: 64});
+      jQuery("body").trigger(e)
+      spyOn(window, 'alert');
+      expect(window.alert).not.toHaveBeenCalledWith('Well done! You learned how to delete a line!');
+    });
 
     it("does not show a message when no keys pressed", function() {
-      helper.stubbedRandomGenerator();
+      stubbedRandomGenerator();
       spyOn(window, 'alert');
-      expect(window.alert).not.toHaveBeenCalledWith('Well done! You learned how to move a line up!');
+      expect(window.alert).not.toHaveBeenCalledWith('Well done! You learned how to delete a line!');
     });
   });
 
-  function Helper() {
-
-    Helper.prototype.stubbedRandomGenerator = function() {
-      spyOn(Math, "random").and.returnValue(0.5)
-      shortkeys.randomShortcut();
-    }
+  function stubbedRandomGenerator() {
+    spyOn(Math, "random").and.returnValue(0.5)
+    shortkeys.randomShortcut();
   }
 });

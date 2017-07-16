@@ -26,7 +26,6 @@
         $('#shortcut').text(shortkeys.displayShortcut);
         $('#description').text(shortkeys.displayDescription);
       });
-
       $(window).keydown(function (e) {
         if (e.ctrlKey && e.shiftKey && e.keyCode == 75 && shortkeys.displayShortcut == "Ctrl + Shift + K") {
           shortkeys.congratsMessage();
@@ -35,6 +34,12 @@
           shortkeys.congratsMessage();
         }
         if (e.metaKey && e.shiftKey && e.keyCode == 68 && shortkeys.displayShortcut == "Cmd + Shift + D") {
+          shortkeys.congratsMessage();
+        }
+        if (e.metaKey && e.keyCode == 68 && shortkeys.displayShortcut == "Cmd + D") {
+          shortkeys.congratsMessage();
+        }
+        if (e.metaKey && e.keyCode == 76 && shortkeys.displayShortcut == "Cmd + L") {
           shortkeys.congratsMessage();
         }
       });
