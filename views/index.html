@@ -4,47 +4,56 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <div class="container-fluid">
-  <head>
-    <h1> Learn an Atom shortcut </h1>
-    <h3> Muscle memory is key. Press the keys indicated. </h3>
-  </head>
-  <body>
-    <script src='jquery.js'></script>
-    <section>
-      <p id="shortcut"></p>
-      <p id="description"></p>
-      <button id="new_shortcut" type ="button">New shortcut</button>
-    </section>
-    <script src="../src/shortkeys.js" type="text/javascript"></script>
-    <script>
-    $(document).ready(function(){
-      var shortkeys = new Shortkeys();
-      $('#shortcut').text(shortkeys.displayShortcut);
-      $('#description').text(shortkeys.displayDescription);
-      $('#new_shortcut').on('click', function() {
-        shortkeys.randomShortcut();
-        $('#shortcut').text(shortkeys.displayShortcut);
-        $('#description').text(shortkeys.displayDescription);
-      });
-      $(window).keydown(function (e) {
-        if (e.ctrlKey && e.shiftKey && e.keyCode == 75 && shortkeys.displayShortcut == "Ctrl + Shift + K") {
-          shortkeys.congratsMessage();
-        }
-        if (e.metaKey && e.ctrlKey && e.keyCode == 38 && shortkeys.displayShortcut == "Cmd + Ctrl + Up" ) {
-          shortkeys.congratsMessage();
-        }
-        if (e.metaKey && e.shiftKey && e.keyCode == 68 && shortkeys.displayShortcut == "Cmd + Shift + D") {
-          shortkeys.congratsMessage();
-        }
-        if (e.metaKey && e.keyCode == 68 && shortkeys.displayShortcut == "Cmd + D") {
-          shortkeys.congratsMessage();
-        }
-        if (e.metaKey && e.keyCode == 76 && shortkeys.displayShortcut == "Cmd + L") {
-          shortkeys.congratsMessage();
-        }
-      });
-    });
-    </script>
-  </body>
-</div>
-</html>
+  <div class="container">
+    <div class="col-md-12 text-center">
+      <head>
+        <h1> Learn an Atom shortcut </h1>
+        <h3> Muscle memory is key. Press the keys indicated. </h3>
+      </head>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-md-2"></div>
+    <div class="col-md-8 text-center">
+      <body background="https://og.github.com/atom-mark/atom-mark@1200x630.png">
+        <script src='jquery.js'></script>
+        <section>
+          <p id="shortcut"></p>
+          <p id="description"></p>
+          <button id="new_shortcut" type ="button">New shortcut</button>
+        </section>
+        <script src="../src/shortkeys.js" type="text/javascript"></script>
+        <script>
+        $(document).ready(function(){
+          var shortkeys = new Shortkeys();
+          $('#shortcut').text(shortkeys.displayShortcut);
+          $('#description').text(shortkeys.displayDescription);
+          $('#new_shortcut').on('click', function() {
+            shortkeys.randomShortcut();
+            $('#shortcut').text(shortkeys.displayShortcut);
+            $('#description').text(shortkeys.displayDescription);
+          });
+          $(window).keydown(function (e) {
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 75 && shortkeys.displayShortcut == "Ctrl + Shift + K") {
+              shortkeys.congratsMessage();
+            }
+            if (e.metaKey && e.ctrlKey && e.keyCode == 38 && shortkeys.displayShortcut == "Cmd + Ctrl + Up" ) {
+              shortkeys.congratsMessage();
+            }
+            if (e.metaKey && e.shiftKey && e.keyCode == 68 && shortkeys.displayShortcut == "Cmd + Shift + D") {
+              shortkeys.congratsMessage();
+            }
+            if (e.metaKey && e.keyCode == 68 && shortkeys.displayShortcut == "Cmd + D") {
+              shortkeys.congratsMessage();
+            }
+            if (e.metaKey && e.keyCode == 76 && shortkeys.displayShortcut == "Cmd + L") {
+              shortkeys.congratsMessage();
+            }
+          });
+        });
+        </script>
+      </div>
+      <div class="col-md-2"></div>
+    </body>
+  </div>
+  </html>
